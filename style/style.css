@@ -1,0 +1,10 @@
+.active {
+	background-color: #0e79813a;
+	color: white;
+	border-radius: 50px;
+	border: 1px solid #0e7a81 !important;
+}
+
+.btn-category:hover {
+	background: #0e79813f;
+}

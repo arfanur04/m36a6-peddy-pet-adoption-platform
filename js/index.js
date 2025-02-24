@@ -1,3 +1,8 @@
+const removeActiveClass = () => {
+	const categoryButtons = document.querySelectorAll(".btn-category");
+	categoryButtons.forEach((button) => button.classList.remove("active"));
+};
+
 const loadCategory = async () => {
 	const categoryUrl = `https://openapi.programming-hero.com/api/peddy/categories`;
 	const res = await fetch(categoryUrl);
@@ -12,16 +17,21 @@ const loadAllPet = async () => {
 	displayPet(data.pets);
 };
 
-const loadCategoryPet = (categoryId) => {
-	console.log(categoryId);
+const loadCategoryPet = async (categoryName, categoryButtonId) => {
+	const url = `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`;
+	const res = await fetch(url);
+	const data = await res.json();
+
+	removeActiveClass();
+	document.getElementById(categoryButtonId).classList.add("active");
+	displayPet(data.data);
 };
 
 const displayPet = (array) => {
 	const petContainer = document.getElementById("pet-container");
+	petContainer.textContent = "";
 
 	array.forEach((item) => {
-		// console.log(item);
-
 		const card = document.createElement("div");
 		card.innerHTML = `
          <div class="card border">
@@ -71,12 +81,16 @@ const displayCategory = (categoriesArray) => {
 
 	categoriesArray.forEach((category) => {
 		const div = document.createElement("div");
+		div.classList.add("w-full");
 		div.innerHTML = `
          <button
             id="btn-cate-${category.id}"
-            onclick="loadCategoryPet(${category.id})"
-            class="btn w-32 btn-category"
-         >
+            onclick="loadCategoryPet('${category.category}', 'btn-cate-${category.id}')"
+            class="btn btn-lg btn-outline border-gray-300 w-full btn-category text-xl"
+         >  
+               <figure class="w-8">
+                  <img class="w-full" src="${category.category_icon}" alt="" />
+               </figure>
                ${category.category}
          </button>
       `;
