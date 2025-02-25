@@ -55,11 +55,29 @@ const likedPet = (image) => {
 	imageContainer.append(figure);
 };
 
-const adoptPet = async (petId) => {
-	const url = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
-	const res = await fetch(url);
-	const data = await res.json();
-	console.log("data: ", data);
+const adoptPet = async () => {
+	const modal = document.getElementById("customModal2");
+	const countDownElement = document.getElementById("countDownElement");
+
+	modal.showModal();
+
+	let count = 3;
+	countDownElement.textContent = count;
+
+	const countDown = setInterval(() => {
+		count--;
+		countDownElement.textContent = count;
+		if (count <= 0) {
+			clearInterval(countDown);
+			customModal2.close();
+		}
+	}, 1000);
+
+	document.addEventListener("keydown", function (event) {
+		if (event.key === "Escape") {
+			clearInterval(countDown);
+		}
+	});
 };
 
 const detailsPet = async (petId) => {
@@ -192,7 +210,7 @@ const displayPet = (array) => {
                            <i class="fa-regular fa-thumbs-up"></i>
                      </button>
                      <button 
-                        onclick="adoptPet(${item.petId})"
+                        onclick="adoptPet()"
                         class="btn btn-sm text-[#0E7A81]"
                      >
                            Adopt
@@ -236,3 +254,4 @@ const displayCategory = (categoriesArray) => {
 
 loadCategory();
 loadAllPet();
+// customModal2.showModal();

@@ -10,6 +10,11 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Peddy - Pet Adoption Platform</title>
+		<link
+			rel="shortcut icon"
+			href="./images/logo.webp"
+			type="image/x-icon"
+		/>
 		<!-- tailwindcss and daisyui -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css"
@@ -273,8 +278,7 @@
 			</section>
 		</footer>
 
-		<!-- modal -->
-		<!-- Open the modal using ID.showModal() method -->
+		<!-- modal Details-->
 		<button
 			class="hidden btn"
 			onclick="customModal.showModal()"
@@ -297,6 +301,47 @@
 						<button class="w-full bg-[#0E7A811A] btn border-teal-200">
 							Cancel
 						</button>
+					</form>
+				</div>
+			</div>
+		</dialog>
+
+		<!-- modal adopt-->
+		<button
+			class="hidden btn"
+			onclick="customModal2.showModal()"
+		>
+			open modal
+		</button>
+		<dialog
+			id="customModal2"
+			class="modal modal-bottom sm:modal-middle"
+		>
+			<div class="modal-box">
+				<!-- modal content -->
+				<section
+					class="text-center"
+					id="modal-content2"
+				>
+					<i class="text-purple-500 fas fa-gem"></i>
+					<h3 class="text-2xl font-bold">Congrats</h3>
+					<p class="my-2">Adoption Process is Start For your Pet</p>
+					<h2
+						class="text-5xl font-bold"
+						id="countDownElement"
+					>
+						3
+					</h2>
+				</section>
+				<div class="modal-action">
+					<form
+						class="w-full"
+						method="dialog "
+					>
+						<!-- if there is a button in form, it will close the modal -->
+						<!-- <button class="w-full bg-[#0E7A811A] btn border-teal-200">
+							Cancel
+						</button> -->
 					</form>
 				</div>
 			</div>
