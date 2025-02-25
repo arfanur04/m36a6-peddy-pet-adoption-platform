@@ -46,6 +46,23 @@ const removeActiveClass = () => {
 	categoryButtons.forEach((button) => button.classList.remove("active"));
 };
 
+const likedPet = (image) => {
+	const imageContainer = document.getElementById("liked-image-container");
+	const figure = document.createElement("figure");
+	figure.innerHTML = `
+      <img class="rounded-md" src="${image}" alt="" />
+   `;
+	imageContainer.append(figure);
+};
+
+const adoptPet = (petId) => {
+	console.log("petId: ", petId);
+};
+
+const detailsPet = (petId) => {
+	console.log("petId: ", petId);
+};
+
 const loadCategory = async () => {
 	const categoryUrl = `https://openapi.programming-hero.com/api/peddy/categories`;
 	const res = await fetch(categoryUrl);
@@ -87,11 +104,11 @@ const displayPet = (array) => {
                <img
                   src="${item.image}"
                   alt="pet"
-                  class="rounded-xl w-full" />
+                  class="rounded-xl w-full h-full" />
             </figure>
             <div class="card-body items-start px-4 justify-between py-4">
                <h2 class="card-title font-bold">${item.pet_name}</h2>
-              <div class="text-[#131313B3]">
+               <div class="text-[#131313B3]">
                   <p>
                      <i class="fa-solid mr-2 w-2 fa-table-cells-large"></i>
                      Breed: ${item?.breed || "Not Available"}
@@ -108,14 +125,28 @@ const displayPet = (array) => {
                      <i class="fa-solid mr-2 w-2 fa-dollar-sign"></i>
                      Price: ${item?.price || "Not Available"}
                   </p>
-              </div>
+               </div>
                <div class="divider"></div>
                <div class="card-actions justify-between w-full">
-                  <button class="btn btn-sm">
-                     <i class="fa-regular fa-thumbs-up"></i>
-                  </button>
-                  <button class="btn btn-sm text-[#0E7A81]">Adopt</button>
-                  <button class="btn btn-sm text-[#0E7A81]">Details</button>
+                     <button 
+                        onclick="likedPet('${item.image}')" 
+                        class="btn btn-sm"
+                     >
+                              
+                           <i class="fa-regular fa-thumbs-up"></i>
+                     </button>
+                     <button 
+                        onclick="adoptPet('${item.petId}')"
+                        class="btn btn-sm text-[#0E7A81]"
+                     >
+                           Adopt
+                     </button>
+                     <button 
+                        onclick="detailsPet('${item.petId}')"
+                        class="btn btn-sm text-[#0E7A81]"
+                     >
+                           Details
+                     </button>
                </div>
             </div>
          </div>
