@@ -146,7 +146,12 @@
 					<!-- sort by price section-->
 					<section class="flex items-center justify-between gap-4 my-6">
 						<h4 class="text-2xl font-bold">Best Deal For you</h4>
-						<button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
+						<button
+							id="sortByPriceBtn"
+							class="btn bg-[#0E7A81] text-white"
+						>
+							Sort by Price
+						</button>
 					</section>
 					<!-- loader section -->
 					<section
@@ -298,9 +303,12 @@
 						method="dialog "
 					>
 						<!-- if there is a button in form, it will close the modal -->
-						<button class="w-full bg-[#0E7A811A] btn border-teal-200">
+						<div
+							onclick="customModal.close()"
+							class="w-full bg-[#0E7A811A] btn border-teal-200"
+						>
 							Cancel
-						</button>
+						</div>
 					</form>
 				</div>
 			</div>

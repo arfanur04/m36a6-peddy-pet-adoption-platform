@@ -167,7 +167,20 @@ const loadCategoryPet = async (categoryName, categoryButtonId) => {
 	displayPet(data.data);
 };
 
+document
+	.getElementById("sortByPriceBtn")
+	.addEventListener("click", function () {
+		sortArray.sort((a, b) => {
+			const priceA = a.price === null ? -Infinity : a.price;
+			const priceB = b.price === null ? -Infinity : b.price;
+			return priceB - priceA;
+		});
+		displayPet(sortArray);
+	});
+
+let sortArray;
 const displayPet = (array) => {
+	sortArray = [...array];
 	const petContainer = document.getElementById("pet-container");
 	petContainer.textContent = "";
 
