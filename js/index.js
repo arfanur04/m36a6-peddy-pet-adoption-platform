@@ -1,3 +1,9 @@
+const mainSection = () => {
+	document
+		.getElementById("main-section")
+		.scrollIntoView({ behavior: "smooth" });
+};
+
 const removeActiveClass = () => {
 	const categoryButtons = document.querySelectorAll(".btn-category");
 	categoryButtons.forEach((button) => button.classList.remove("active"));
