@@ -17,6 +17,30 @@ const showLoader = () => {
 	}, 2000);
 };
 
+const showNoData = (booleanValue) => {
+	const noDataSection = document.getElementById("noDataSection");
+	const likedImgCon = document.getElementById("liked-image-container");
+	noDataSection.textContent = "";
+
+	setTimeout(() => {
+		if (booleanValue === true) {
+			likedImgCon.classList.add("hidden");
+			noDataSection.innerHTML = `
+            <div class="flex justify-center items-center flex-col my-6">
+               <figure>
+                  <img src="../images/error.webp" alt="" />
+               </figure>
+               <h2 class="lg:text-4xl text-2xl font-bold">No Data Available</h2>
+               <p class="max-w-2xl mx-auto text-center">Unfortunately, there is currently no available data. Please try again later when more information may be accessible.</p>
+            </div>
+         `;
+		} else {
+			noDataSection.textContent = "";
+			likedImgCon.classList.remove("hidden");
+		}
+	}, 2000);
+};
+
 const removeActiveClass = () => {
 	const categoryButtons = document.querySelectorAll(".btn-category");
 	categoryButtons.forEach((button) => button.classList.remove("active"));
@@ -42,8 +66,8 @@ const loadCategoryPet = async (categoryName, categoryButtonId) => {
 	const data = await res.json();
 
 	if (data.data.length === 0) {
-		console.log("no information Available");
-	}
+		showNoData(true);
+	} else showNoData(false);
 
 	showLoader();
 	removeActiveClass();
