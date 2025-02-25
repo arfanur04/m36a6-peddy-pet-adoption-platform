@@ -104,7 +104,7 @@
 						compassionate individuals with pets yearning for a forever home.
 					</p>
 					<button
-						onclick="mainSection()"
+						onclick="goToMainSection()"
 						class="btn bg-[#0E7A81] text-white mt-6"
 					>
 						View More
@@ -143,7 +143,21 @@
 						<h4 class="text-2xl font-bold">Best Deal For you</h4>
 						<button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
 					</section>
-					<main class="grid grid-cols-1 gap-4 mt-6 lg:grid-cols-4">
+					<!-- loader section -->
+					<section
+						id="loader"
+						class="hidden"
+					>
+						<div class="flex items-center justify-center h-48">
+							<div
+								class="w-10 h-10 border-8 rounded-full border-t-teal-500 border-r-blue-500 border-b-red-500 border-l-yellow-500 animate-spin"
+							></div>
+						</div>
+					</section>
+					<main
+						id="all-pet-section"
+						class="grid grid-cols-1 gap-4 mt-6 lg:grid-cols-4"
+					>
 						<!-- pet container -->
 						<section
 							id="pet-container"

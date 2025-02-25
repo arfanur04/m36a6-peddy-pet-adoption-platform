@@ -1,7 +1,20 @@
-const mainSection = () => {
+const goToMainSection = () => {
 	document
 		.getElementById("main-section")
 		.scrollIntoView({ behavior: "smooth" });
+};
+
+const showLoader = () => {
+	const allPetSection = document.getElementById("all-pet-section");
+	allPetSection.classList.add("hidden");
+
+	const loader = document.getElementById("loader");
+	loader.classList.remove("hidden");
+
+	setTimeout(() => {
+		allPetSection.classList.remove("hidden");
+		loader.classList.add("hidden");
+	}, 2000);
 };
 
 const removeActiveClass = () => {
@@ -28,6 +41,11 @@ const loadCategoryPet = async (categoryName, categoryButtonId) => {
 	const res = await fetch(url);
 	const data = await res.json();
 
+	if (data.data.length === 0) {
+		console.log("no information Available");
+	}
+
+	showLoader();
 	removeActiveClass();
 	document.getElementById(categoryButtonId).classList.add("active");
 	displayPet(data.data);
