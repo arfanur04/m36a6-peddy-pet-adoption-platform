@@ -55,10 +55,11 @@ const likedPet = (image) => {
 	imageContainer.append(figure);
 };
 
-const adoptPet = async () => {
+const adoptPet = (adoptPetBtnId) => {
+	document.getElementById(adoptPetBtnId).classList.add("btn-disabled");
+
 	const modal = document.getElementById("customModal2");
 	const countDownElement = document.getElementById("countDownElement");
-
 	modal.showModal();
 
 	let count = 3;
@@ -210,7 +211,8 @@ const displayPet = (array) => {
                            <i class="fa-regular fa-thumbs-up"></i>
                      </button>
                      <button 
-                        onclick="adoptPet()"
+                        id="adoptPetBtn-${item.petId}"
+                        onclick="adoptPet('adoptPetBtn-${item.petId}')"
                         class="btn btn-sm text-[#0E7A81]"
                      >
                            Adopt
