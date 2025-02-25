@@ -21,3 +21,7 @@
 5. Async/Await
 6. Spread Operator (...)
 7. addEventListener
+
+## [live site](https://m36a6-peddy-pet-adoption-platform.netlify.app/)
+
+## [https://m36a6-peddy-pet-adoption-platform.netlify.app/](https://m36a6-peddy-pet-adoption-platform.netlify.app/)
