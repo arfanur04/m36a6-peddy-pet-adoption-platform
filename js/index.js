@@ -55,12 +55,68 @@ const likedPet = (image) => {
 	imageContainer.append(figure);
 };
 
-const adoptPet = (petId) => {
-	console.log("petId: ", petId);
+const adoptPet = async (petId) => {
+	const url = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+	const res = await fetch(url);
+	const data = await res.json();
+	console.log("data: ", data);
 };
 
-const detailsPet = (petId) => {
-	console.log("petId: ", petId);
+const detailsPet = async (petId) => {
+	const url = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+	const res = await fetch(url);
+	const data = await res.json();
+	const petData = data.petData;
+
+	const modalContainer = document.getElementById("modal-content");
+	modalContainer.innerHTML = `
+   <div class="card card-compact ">
+      <figure>
+         <img
+            class="w-full rounded-xl"
+            src="${petData.image}"
+            alt="Shoes" />
+      </figure>
+      <main class="py-4">
+         <h2 class="card-title text-2xl font-bold">${petData.pet_name}</h2>
+         <div class="flex gap-6">
+            <section class="text-[#131313B3]">
+               <p>
+                  <i class="fa-solid mr-2 w-2 fa-table-cells-large"></i>
+                  Breed: ${petData?.breed || "Not Available"}
+               </p>
+               <p>
+                  <i class="fa-solid mr-2 w-2 fa-venus"></i>
+                  Gender: ${petData?.gender || "Not Available"}
+               </p>
+               <p>
+                  <i class="fa-solid mr-2 w-2 fa-venus"></i>
+                  Vaccinated status: ${
+										petData?.vaccinated_status || "Not Available"
+									}
+               </p>
+            </section>
+            <section>
+               <p>
+                  <i class="fa-regular mr-2 w-2 fa-calendar"></i>
+                  Birth: ${petData?.date_of_birth || "Not Available"}
+               </p>
+               <p>
+                  <i class="fa-solid mr-2 w-2 fa-dollar-sign"></i>
+                  Price: ${petData?.price || "Not Available"}
+               </p>
+            </section>
+         </div>
+         <div class="divider"></div>
+         <div>
+            <h3 class="text-lg font-bold">Details Information</h3>
+            <p class="text-[#131313B3]">Pet Details: ${petData.pet_details}</p>
+         </div>
+      </main>
+   </div>
+   `;
+
+	customModal.showModal();
 };
 
 const loadCategory = async () => {
@@ -136,13 +192,13 @@ const displayPet = (array) => {
                            <i class="fa-regular fa-thumbs-up"></i>
                      </button>
                      <button 
-                        onclick="adoptPet('${item.petId}')"
+                        onclick="adoptPet(${item.petId})"
                         class="btn btn-sm text-[#0E7A81]"
                      >
                            Adopt
                      </button>
                      <button 
-                        onclick="detailsPet('${item.petId}')"
+                        onclick="detailsPet(${item.petId})"
                         class="btn btn-sm text-[#0E7A81]"
                      >
                            Details
